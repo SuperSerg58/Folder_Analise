@@ -62,18 +62,19 @@ def file_info(item):
 
 
 def main(path):
-    files = os.listdir(path)
+    for folderpath, dirnames, filenames in os.walk(path):
 
-    # Получаем список элементов список каталогов и файлов с путями:
-    files = [os.path.join(path, file) for file in files]
-    # Итерирум по списку и если объект является папкой то функция для папки.
+        folder_info(folderpath)
+        files = os.listdir(folderpath)
+        files = [os.path.join(folderpath, file) for file in files]
 
-    for item in files:
-        if os.path.isdir(item):
-            folder_info(item)
-        else:
-            file_info(item)
+        for file in files:
+            if os.path.isfile(file):
+                file_info(file)
+            else:
+                continue
 
 
 if __name__ == '__main__':
+    path = ' '
     main()
