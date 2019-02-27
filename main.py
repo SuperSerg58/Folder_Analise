@@ -29,7 +29,7 @@ def folder_info(item):
         for f in files:
             fileCount += 1
 
-    print("{}: {}, размер: {}, Дата создания: {}".format(name, item, folder_size, folder_time))
+    # print("{}: {}, размер: {}, Дата создания: {}".format(name, item, folder_size, folder_time))
     # Массив данных который будет записываться в csv файл
     data = {'name': name,
             'f_name': f_name,
@@ -48,7 +48,7 @@ def file_info(item):
     item_size = str('{:.2f}'.format(os.path.getsize(item) / 1024)) + ' kb'  # Размер файла в килобайтах.
     item_time = time.strftime('%d.%m.%Y', time.localtime(os.stat(item).st_mtime)) # Время изменения файла.
     count_file = ' '
-    print("{}: {}, размер: {}, Дата создания: {}".format(name, item, item_size, item_time))
+    # print("{}: {}, размер: {}, Дата создания: {}".format(name, item, item_size, item_time))
 
     data = {'name': name,
             'f_name': f_name,
@@ -62,6 +62,7 @@ def file_info(item):
 
 
 def main(path):
+
     for folderpath, dirnames, filenames in os.walk(path):
 
         folder_info(folderpath)
@@ -76,5 +77,5 @@ def main(path):
 
 
 if __name__ == '__main__':
-    path = ' '
-    main()
+    path = "d:\PyCharmProject\Example\! БС\\"
+    main(path)
