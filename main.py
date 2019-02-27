@@ -19,6 +19,10 @@ def get_size(value):
 def folder_info(item):
     name = 'Папка'  # Первый столбик файла название элемента
     f_name = item.split('\\')[-1]
+
+    if f_name == '':
+        f_name = 'Корневая директория'
+
     folder_size = str(get_size(item)) + ' Mb'  # Расчитываем размер текущей патки.
 
     folder_time = time.strftime('%d.%m.%Y', time.localtime(os.stat(item).st_ctime)) # Время создания папки.
@@ -29,7 +33,7 @@ def folder_info(item):
         for f in files:
             fileCount += 1
 
-    # print("{}: {}, размер: {}, Дата создания: {}".format(name, item, folder_size, folder_time))
+    print("{}: {}, размер: {}, Дата создания: {}".format(name, item, folder_size, folder_time))
     # Массив данных который будет записываться в csv файл
     data = {'name': name,
             'f_name': f_name,
@@ -48,7 +52,7 @@ def file_info(item):
     item_size = str('{:.2f}'.format(os.path.getsize(item) / 1024)) + ' kb'  # Размер файла в килобайтах.
     item_time = time.strftime('%d.%m.%Y', time.localtime(os.stat(item).st_mtime)) # Время изменения файла.
     count_file = ' '
-    # print("{}: {}, размер: {}, Дата создания: {}".format(name, item, item_size, item_time))
+    print("{}: {}, размер: {}, Дата создания: {}".format(name, item, item_size, item_time))
 
     data = {'name': name,
             'f_name': f_name,
@@ -77,5 +81,4 @@ def main(path):
 
 
 if __name__ == '__main__':
-    path = "d:\PyCharmProject\Example\! БС\\"
-    main(path)
+    main()
